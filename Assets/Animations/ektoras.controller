@@ -29,7 +29,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EEpithesh
+  m_Name: Eattack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -58,7 +58,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: amyna
+    m_ConditionEvent: defence
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5693409194259438601}
@@ -83,13 +83,13 @@ AnimatorController:
   m_Name: ektoras
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: epithesh
+  - m_Name: attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: amyna
+  - m_Name: defence
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -131,7 +131,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: amyna
+    m_ConditionEvent: defence
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4621305348845494291}
@@ -186,7 +186,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EmhAmyna
+  m_Name: EnonDefence
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -215,7 +215,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: epithesh
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6894830837876364902}
@@ -238,7 +238,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EAmyna
+  m_Name: Edefence
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -267,7 +267,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: epithesh
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4433008865898495001}
