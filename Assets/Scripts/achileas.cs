@@ -9,29 +9,39 @@ public class achileas : MonoBehaviour
 	ektoras ektorasScript;
 
 	public Animator achilAnimator;
-	public Animation epitheshAnim;
+	public Animation attackAnim;
+
+	GameObject game;
+	game gameScript;
 
 	void Start()
 	{
+		game = GameObject.Find("game");
+		gameScript = game.GetComponent<game>();
+
 		ektoras = GameObject.Find("ektoras");
 		ektorasScript = ektoras.GetComponent<ektoras>();
+
 		achilAnimator = GetComponent<Animator>();
-		epitheshAnim = GetComponent<Animation>();
+		attackAnim = GetComponent<Animation>();
 	}
 
-	public void epithesh()
+	public void attack()
 	{
-		achilAnimator.SetBool("epithesh", true);
+		achilAnimator.SetBool("attack", true);
+		gameScript.makeNonInteractable();
 		ektorasScript.takeDamage(Random.Range(5, 26));
 	}
 
-	public void amyna()
+	public void defence()
 	{
-		achilAnimator.SetBool("amyna", true);
+		achilAnimator.SetBool("defence", true);
+		gameScript.changePlayerTurn();
 	}
 
 	public void heal()
 	{
 
+		gameScript.changePlayerTurn();
 	}
 }

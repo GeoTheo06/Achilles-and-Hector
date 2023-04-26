@@ -6,8 +6,11 @@ public class ektoras : MonoBehaviour
 {
 	public int hp = 100;
 
-	achileas achileasScript;
+	GameObject game;
+	game gameScript;
+
 	GameObject achileas;
+	achileas achileasScript;
 
 	GameObject ektorasDamage;
 	TextMeshProUGUI ektorasDamageText;
@@ -16,11 +19,13 @@ public class ektoras : MonoBehaviour
 	TextMeshProUGUI ektorasHpText;
 
 	public Animator ektorAnimator;
-	public Animation epitheshAnim;
+	public Animation attackhAnim;
 
-	// Start is called before the first frame update
 	void Start()
 	{
+		game = GameObject.Find("game");
+		gameScript = game.GetComponent<game>();
+
 		ektorasDamage = GameObject.Find("ektoras damage");
 		ektorasDamageText = ektorasDamage.GetComponent<TextMeshProUGUI>();
 
@@ -31,36 +36,38 @@ public class ektoras : MonoBehaviour
 		achileasScript = achileas.GetComponent<achileas>();
 
 		ektorAnimator = GetComponent<Animator>();
-		epitheshAnim = GetComponent<Animation>();
+		attackhAnim = GetComponent<Animation>();
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 
 	}
+
 	int damage;
-	public void epithesh()
+	public void attack()
 	{
 		damage = Random.Range(5, 25);
 
 		achileasScript.hp -= damage;
+		gameScript.changePlayerTurn();
 	}
 
-	public void amyna()
+	public void defence()
 	{
 		ektorAnimator.SetBool("amyna", true);
+		gameScript.changePlayerTurn();
 	}
 
 	public void heal()
 	{
-
+		gameScript.changePlayerTurn();
 	}
 
 	public void takeDamage(int damage)
 	{
-		if (ektorAnimator.GetBool("amyna"))
-			StartCoroutine(amynaTimer());
+		if (ektorAnimator.GetBool("defence"))
+			StartCoroutine(defenceTimer());
 		else
 		{
 			hp -= damage;
@@ -69,26 +76,27 @@ public class ektoras : MonoBehaviour
 		}
 	}
 
-	IEnumerator amynaTimer()
+	IEnumerator defenceTimer()
 	{
 		yield return new WaitForSeconds(2);
-		achileasScript.achilAnimator.SetBool("epithesh", false);
-		StartCoroutine(amynaTimer2());
+		achileasScript.achilAnimator.SetBool("attack", false);
+		StartCoroutine(defenceTimer2());
 	}
-	IEnumerator amynaTimer2()
+	IEnumerator defenceTimer2()
 	{
 		yield return new WaitForSeconds(2);
-		ektorAnimator.SetBool("amyna", false);
+		ektorAnimator.SetBool("defence", false);
 	}
 
 	IEnumerator removeText()
 	{
 		yield return new WaitForSeconds(2);
-		if (!achileasScript.epitheshAnim.isPlaying && achileasScript.achilAnimator.GetBool("epithesh"))
+		if (!achileasScript.attackAnim.isPlaying && achileasScript.achilAnimator.GetBool("attack"))
 		{
 			ektorasDamageText.text = "";
 			ektorasHpText.text = "" + hp;
-			achileasScript.achilAnimator.SetBool("epithesh", false);
+			achileasScript.achilAnimator.SetBool("attack", false);
 		}
+		gameScript.changePlayerTurn();
 	}
 }
