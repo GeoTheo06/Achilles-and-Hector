@@ -19,7 +19,7 @@ public class ektoras : MonoBehaviour
 	TextMeshProUGUI ektorasHpText;
 
 	public Animator ektorAnimator;
-	public Animation attackhAnim;
+	public Animation attackAnim;
 
 	void Start()
 	{
@@ -36,7 +36,7 @@ public class ektoras : MonoBehaviour
 		achileasScript = achileas.GetComponent<achileas>();
 
 		ektorAnimator = GetComponent<Animator>();
-		attackhAnim = GetComponent<Animation>();
+		attackAnim = GetComponent<Animation>();
 	}
 
 	void Update()
@@ -47,15 +47,17 @@ public class ektoras : MonoBehaviour
 	int damage;
 	public void attack()
 	{
-		damage = Random.Range(5, 25);
+		if (ektorAnimator.GetBool("defence"))
+			ektorAnimator.SetBool("defence", false);
 
-		achileasScript.hp -= damage;
-		gameScript.changePlayerTurn();
+		ektorAnimator.SetBool("attack", true);
+		gameScript.makeNonInteractable();
+		achileasScript.takeDamage(Random.Range(5, 26));
 	}
 
 	public void defence()
 	{
-		ektorAnimator.SetBool("amyna", true);
+		ektorAnimator.SetBool("defence", true);
 		gameScript.changePlayerTurn();
 	}
 
@@ -86,6 +88,7 @@ public class ektoras : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2);
 		ektorAnimator.SetBool("defence", false);
+		gameScript.changePlayerTurn();
 	}
 
 	IEnumerator removeText()
