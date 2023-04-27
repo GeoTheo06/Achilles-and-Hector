@@ -48,6 +48,7 @@ public class game : MonoBehaviour
 		eHealButton.interactable = false;
 	}
 
+	public bool aPlayedDefenceBefore = false, ePlayedDefenceBefore = false;
 	public void changePlayerTurn()
 	{
 		if (playerTurn)
@@ -55,19 +56,37 @@ public class game : MonoBehaviour
 			eAttackButton.interactable = false;
 			eDefenceButton.interactable = false;
 			eHealButton.interactable = false;
+
 			aAttackButton.interactable = true;
-			aDefenceButton.interactable = true;
 			aHealButton.interactable = true;
+
+			//i dont want the players to be able to just use shields all the time: after using it once, it is disabled for one round
+			if (aPlayedDefenceBefore)
+			{
+				aDefenceButton.interactable = false;
+				aPlayedDefenceBefore = false;
+			}
+			else
+				aDefenceButton.interactable = true;
 		}
 		else if (!playerTurn)
 		{
 			aAttackButton.interactable = false;
 			aDefenceButton.interactable = false;
 			aHealButton.interactable = false;
+
 			eAttackButton.interactable = true;
-			eDefenceButton.interactable = true;
 			eHealButton.interactable = true;
+
+			if (ePlayedDefenceBefore)
+			{
+				eDefenceButton.interactable = false;
+				ePlayedDefenceBefore = false;
+			}
+			else
+				eDefenceButton.interactable = true;
 		}
+
 		playerTurn = !playerTurn;
 	}
 

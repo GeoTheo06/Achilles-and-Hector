@@ -52,12 +52,30 @@ public class ektoras : MonoBehaviour
 
 		ektorAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
-		achileasScript.takeDamage(Random.Range(5, 26));
+		achileasScript.takeDamage(Random.Range(10, 26));
 	}
 
+	int healPoints;
 	public void defence()
 	{
 		ektorAnimator.SetBool("defence", true);
+		gameScript.ePlayedDefenceBefore = true;
+
+		healPoints = Random.Range(5, 16);
+		if (healPoints + hp > 150)
+			healPoints = 150 - hp;
+
+		ektorasDamageText.text = "+" + healPoints;
+
+		StartCoroutine(defenceTimer());
+	}
+
+	IEnumerator defenceTimer()
+	{
+		yield return new WaitForSeconds(1);
+		hp += healPoints;
+		ektorasDamageText.text = "";
+		ektorasHpText.text = "" + hp;
 		gameScript.changePlayerTurn();
 	}
 
@@ -69,7 +87,7 @@ public class ektoras : MonoBehaviour
 	public void takeDamage(int damage)
 	{
 		if (ektorAnimator.GetBool("defence"))
-			StartCoroutine(defenceTimer());
+			StartCoroutine(takeDamageTimer());
 		else
 		{
 			hp -= damage;
@@ -78,13 +96,13 @@ public class ektoras : MonoBehaviour
 		}
 	}
 
-	IEnumerator defenceTimer()
+	IEnumerator takeDamageTimer()
 	{
 		yield return new WaitForSeconds(2);
 		achileasScript.achilAnimator.SetBool("attack", false);
-		StartCoroutine(defenceTimer2());
+		StartCoroutine(takeDamageTimer2());
 	}
-	IEnumerator defenceTimer2()
+	IEnumerator takeDamageTimer2()
 	{
 		yield return new WaitForSeconds(2);
 		ektorAnimator.SetBool("defence", false);
