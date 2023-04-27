@@ -48,9 +48,27 @@ public class achileas : MonoBehaviour
 		ektorasScript.takeDamage(Random.Range(10, 26));
 	}
 
+	int healPoints;
 	public void defence()
 	{
 		achilAnimator.SetBool("defence", true);
+		gameScript.aPlayedDefenceBefore = true;
+
+		healPoints = Random.Range(5, 16);
+		if (healPoints + hp > 150)
+			healPoints = 150 - hp;
+
+		achilleasDamageText.text = "+" + healPoints;
+
+		StartCoroutine(defenceTimer());
+	}
+
+	IEnumerator defenceTimer()
+	{
+		yield return new WaitForSeconds(1);
+		hp += healPoints;
+		achilleasDamageText.text = "";
+		achilleasHpText.text = "" + hp;
 		gameScript.changePlayerTurn();
 	}
 
