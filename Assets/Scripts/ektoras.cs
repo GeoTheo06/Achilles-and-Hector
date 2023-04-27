@@ -48,7 +48,21 @@ public class ektoras : MonoBehaviour
 	public void attack()
 	{
 		if (ektorAnimator.GetBool("defence"))
+		{
 			ektorAnimator.SetBool("defence", false);
+			StartCoroutine(attackTimer());
+		}
+		else
+		{
+			ektorAnimator.SetBool("attack", true);
+			gameScript.makeNonInteractable();
+			achileasScript.takeDamage(Random.Range(10, 26));
+		}
+	}
+
+	IEnumerator attackTimer()
+	{
+		yield return new WaitForSeconds(1);
 
 		ektorAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
@@ -98,13 +112,13 @@ public class ektoras : MonoBehaviour
 
 	IEnumerator takeDamageTimer()
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 		achileasScript.achilAnimator.SetBool("attack", false);
 		StartCoroutine(takeDamageTimer2());
 	}
 	IEnumerator takeDamageTimer2()
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 		ektorAnimator.SetBool("defence", false);
 		gameScript.changePlayerTurn();
 	}

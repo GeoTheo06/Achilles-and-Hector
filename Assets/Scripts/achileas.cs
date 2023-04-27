@@ -41,7 +41,21 @@ public class achileas : MonoBehaviour
 	public void attack()
 	{
 		if (achilAnimator.GetBool("defence"))
+		{
 			achilAnimator.SetBool("defence", false);
+			StartCoroutine(attackTimer());
+		}
+		else
+		{
+			achilAnimator.SetBool("attack", true);
+			gameScript.makeNonInteractable();
+			ektorasScript.takeDamage(Random.Range(10, 26));
+		}
+	}
+
+	IEnumerator attackTimer()
+	{
+		yield return new WaitForSeconds(1);
 
 		achilAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
@@ -82,7 +96,9 @@ public class achileas : MonoBehaviour
 	public void takeDamage(int damage)
 	{
 		if (achilAnimator.GetBool("defence"))
+		{
 			StartCoroutine(takeDamageTimer());
+		}
 		else
 		{
 			hp -= damage;
@@ -93,13 +109,13 @@ public class achileas : MonoBehaviour
 
 	IEnumerator takeDamageTimer()
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 		ektorasScript.ektorAnimator.SetBool("attack", false);
 		StartCoroutine(takeDamageTimer2());
 	}
 	IEnumerator takeDamageTimer2()
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 		achilAnimator.SetBool("defence", false);
 		gameScript.changePlayerTurn();
 	}
