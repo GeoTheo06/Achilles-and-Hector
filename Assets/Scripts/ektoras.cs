@@ -75,7 +75,7 @@ public class ektoras : MonoBehaviour
 		ektorAnimator.SetBool("defence", true);
 		gameScript.ePlayedDefenceBefore = true;
 
-		healPoints = Random.Range(5, 16);
+		healPoints = Random.Range(5, 11);
 		if (healPoints + hp > 150)
 			healPoints = 150 - hp;
 
@@ -106,7 +106,7 @@ public class ektoras : MonoBehaviour
 		{
 			hp -= damage;
 			ektorasDamageText.text = "-" + damage;
-			StartCoroutine(removeText());
+			StartCoroutine(removeText1());
 		}
 	}
 
@@ -123,15 +123,20 @@ public class ektoras : MonoBehaviour
 		gameScript.changePlayerTurn();
 	}
 
-	IEnumerator removeText()
+	IEnumerator removeText1()
 	{
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 		if (!achileasScript.attackAnim.isPlaying && achileasScript.achilAnimator.GetBool("attack"))
-		{
-			ektorasDamageText.text = "";
-			ektorasHpText.text = "" + hp;
 			achileasScript.achilAnimator.SetBool("attack", false);
-		}
+		StartCoroutine(removeText2());
+	}
+
+	IEnumerator removeText2()
+	{
+		yield return new WaitForSeconds(1);
+		ektorasDamageText.text = "";
+		ektorasHpText.text = "" + hp;
+		achileasScript.achilAnimator.SetBool("attack", false);
 		gameScript.changePlayerTurn();
 	}
 }
