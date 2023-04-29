@@ -13,8 +13,30 @@ public class game : MonoBehaviour
 	public bool playerTurn;
 	Button aAttackButton, aDefenceButton, aHealButton, eAttackButton, eDefenceButton, eHealButton;
 
+	GameObject aHealPSob;
+	ParticleSystem aHealPS;
+
+	GameObject eHealPSob;
+	ParticleSystem eHealPS;
+
+	GameObject achileasOB, ektorasOB;
+	achileas achileasScript;
+	ektoras ektorasScript;
+
 	void Start()
 	{
+		achileasOB = GameObject.Find("achilleas");
+		achileasScript = achileasOB.GetComponent<achileas>();
+
+		ektorasOB = GameObject.Find("ektoras");
+		ektorasScript = ektorasOB.GetComponent<ektoras>();
+
+		aHealPSob = GameObject.Find("aHealPS");
+		aHealPS = aHealPSob.GetComponent<ParticleSystem>();
+
+		eHealPSob = GameObject.Find("eHealPS");
+		eHealPS = eHealPSob.GetComponent<ParticleSystem>();
+
 		aAttackButton = GameObject.Find("AAttack").GetComponent<Button>();
 		aDefenceButton = GameObject.Find("ADefence").GetComponent<Button>();
 		aHealButton = GameObject.Find("AHeal").GetComponent<Button>();
@@ -27,6 +49,8 @@ public class game : MonoBehaviour
 		number = Random.Range(0, 2);
 		playerTurn = number == 1;
 
+		aHealPS.Stop();
+		eHealPS.Stop();
 		changePlayerTurn();
 	}
 
@@ -84,6 +108,34 @@ public class game : MonoBehaviour
 				eDefenceButton.interactable = true;
 		}
 
+		if (achileasScript.healsUsed >= 3 || achileasScript.hp == 100)
+			aHealButton.interactable = false;
+		if (ektorasScript.healsUsed >= 3 || ektorasScript.hp == 100)
+			eHealButton.interactable = false;
+
 		playerTurn = !playerTurn;
+	}
+
+	float rotationSpeed = 200f;
+	void Update()
+	{
+		aHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+		eHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+	}
+
+	public void aHeal(bool start)
+	{
+		if (start)
+			aHealPS.Play();
+		else
+			aHealPS.Stop();
+	}
+
+	public void eHeal(bool start)
+	{
+		if (start)
+			eHealPS.Play();
+		else
+			eHealPS.Stop();
 	}
 }

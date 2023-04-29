@@ -34,7 +34,7 @@ public class achileas : MonoBehaviour
 		achilleasHpGO = GameObject.Find("axilleas hp");
 		achilleasHpText = achilleasHpGO.GetComponent<TextMeshProUGUI>();
 
-		healsRemainingGO = GameObject.Find("axilleas hp");
+		healsRemainingGO = GameObject.Find("aHealsRemaining");
 		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
 
 		ektoras = GameObject.Find("ektoras");
@@ -55,7 +55,7 @@ public class achileas : MonoBehaviour
 		{
 			achilAnimator.SetBool("attack", true);
 			gameScript.makeNonInteractable();
-			ektorasScript.takeDamage(Random.Range(10, 26));
+			ektorasScript.takeDamage(Random.Range(10, 31));
 		}
 	}
 
@@ -65,7 +65,7 @@ public class achileas : MonoBehaviour
 
 		achilAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
-		ektorasScript.takeDamage(Random.Range(10, 26));
+		ektorasScript.takeDamage(Random.Range(10, 31));
 	}
 
 	int defenceHealPoints;
@@ -75,8 +75,8 @@ public class achileas : MonoBehaviour
 		gameScript.aPlayedDefenceBefore = true;
 
 		defenceHealPoints = Random.Range(5, 11);
-		if (defenceHealPoints + hp > 150)
-			defenceHealPoints = 150 - hp;
+		if (defenceHealPoints + hp > 100)
+			defenceHealPoints = 100 - hp;
 
 		achilleasDamageText.text = "+" + defenceHealPoints;
 
@@ -92,12 +92,37 @@ public class achileas : MonoBehaviour
 		gameScript.changePlayerTurn();
 	}
 
+	public int healsUsed = 0;
+	int healPoints, oldHp;
 	public void heal()
 	{
+		healsUsed++;
+		healsRemainingText.text = healsUsed + "/3";
 
-		gameScript.changePlayerTurn();
+		healPoints = Random.Range(10, 31);
+		if (hp + healPoints > 100)
+			healPoints = 100 - hp;
+		achilleasDamageText.text = "+" + healPoints;
+
+		gameScript.aHeal(true);
+
+		oldHp = hp;
+		InvokeRepeating("incrementHp", 0.0f, 0.1f);
 	}
 
+	void incrementHp()
+	{
+		hp += 1;
+		achilleasHpText.text = "" + hp;
+
+		if (hp >= oldHp + healPoints)
+		{
+			CancelInvoke("incrementHp");
+			achilleasDamageText.text = "";
+			gameScript.aHeal(false);
+			gameScript.changePlayerTurn();
+		}
+	}
 
 	public void takeDamage(int damage)
 	{

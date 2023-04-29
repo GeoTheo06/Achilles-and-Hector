@@ -18,6 +18,9 @@ public class ektoras : MonoBehaviour
 	GameObject ektorasHpGO;
 	TextMeshProUGUI ektorasHpText;
 
+	GameObject healsRemainingGO;
+	TextMeshProUGUI healsRemainingText;
+
 	public Animator ektorAnimator;
 	public Animation attackAnim;
 
@@ -34,6 +37,9 @@ public class ektoras : MonoBehaviour
 
 		achileasGO = GameObject.Find("achilleas");
 		achileasScript = achileasGO.GetComponent<achileas>();
+
+		healsRemainingGO = GameObject.Find("eHealsRemaining");
+		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
 
 		ektorAnimator = GetComponent<Animator>();
 		attackAnim = GetComponent<Animation>();
@@ -56,7 +62,7 @@ public class ektoras : MonoBehaviour
 		{
 			ektorAnimator.SetBool("attack", true);
 			gameScript.makeNonInteractable();
-			achileasScript.takeDamage(Random.Range(10, 26));
+			achileasScript.takeDamage(Random.Range(10, 31));
 		}
 	}
 
@@ -66,7 +72,7 @@ public class ektoras : MonoBehaviour
 
 		ektorAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
-		achileasScript.takeDamage(Random.Range(10, 26));
+		achileasScript.takeDamage(Random.Range(10, 31));
 	}
 
 	int defenceHealPoints;
@@ -76,8 +82,8 @@ public class ektoras : MonoBehaviour
 		gameScript.ePlayedDefenceBefore = true;
 
 		defenceHealPoints = Random.Range(5, 11);
-		if (defenceHealPoints + hp > 150)
-			defenceHealPoints = 150 - hp;
+		if (defenceHealPoints + hp > 100)
+			defenceHealPoints = 100 - hp;
 
 		ektorasDamageText.text = "+" + defenceHealPoints;
 
@@ -93,10 +99,37 @@ public class ektoras : MonoBehaviour
 		gameScript.changePlayerTurn();
 	}
 
+	public int healsUsed = 0;
+	int healPoints, oldHp;
 	public void heal()
 	{
+		healsUsed++;
+		healsRemainingText.text = healsUsed + "/3";
 
-		gameScript.changePlayerTurn();
+		healPoints = Random.Range(10, 31);
+		if (hp + healPoints > 100)
+			healPoints = 100 - hp;
+
+		ektorasDamageText.text = "+" + healPoints;
+
+		gameScript.eHeal(true);
+
+		oldHp = hp;
+		InvokeRepeating("incrementHp", 0.0f, 0.1f);
+	}
+
+	void incrementHp()
+	{
+		hp += 1;
+		ektorasHpText.text = "" + hp;
+
+		if (hp >= oldHp + healPoints)
+		{
+			CancelInvoke("incrementHp");
+			ektorasDamageText.text = "";
+			gameScript.eHeal(false);
+			gameScript.changePlayerTurn();
+		}
 	}
 
 	public void takeDamage(int damage)
