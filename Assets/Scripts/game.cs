@@ -108,9 +108,9 @@ public class game : MonoBehaviour
 				eDefenceButton.interactable = true;
 		}
 
-		if (achileasScript.healsUsed >= 3 || achileasScript.hp == 100)
+		if (achileasScript.healsUsed >= 2 || achileasScript.hp == 100)
 			aHealButton.interactable = false;
-		if (ektorasScript.healsUsed >= 3 || ektorasScript.hp == 100)
+		if (ektorasScript.healsUsed >= 2 || ektorasScript.hp == 100)
 			eHealButton.interactable = false;
 
 		playerTurn = !playerTurn;

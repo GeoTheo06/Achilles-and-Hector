@@ -98,7 +98,7 @@ public class achileas : MonoBehaviour
 	public void heal()
 	{
 		healsUsed++;
-		healsRemainingText.text = healsUsed + "/3";
+		healsRemainingText.text = healsUsed + "/2";
 
 		healPoints = Random.Range(10, 31);
 		if (hp + healPoints > 100)
