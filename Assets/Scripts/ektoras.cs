@@ -9,13 +9,13 @@ public class ektoras : MonoBehaviour
 	GameObject game;
 	game gameScript;
 
-	GameObject achileas;
+	GameObject achileasGO;
 	achileas achileasScript;
 
-	GameObject ektorasDamage;
+	GameObject ektorasDamageGO;
 	TextMeshProUGUI ektorasDamageText;
 
-	GameObject ektorasHp;
+	GameObject ektorasHpGO;
 	TextMeshProUGUI ektorasHpText;
 
 	public Animator ektorAnimator;
@@ -26,14 +26,14 @@ public class ektoras : MonoBehaviour
 		game = GameObject.Find("game");
 		gameScript = game.GetComponent<game>();
 
-		ektorasDamage = GameObject.Find("ektoras damage");
-		ektorasDamageText = ektorasDamage.GetComponent<TextMeshProUGUI>();
+		ektorasDamageGO = GameObject.Find("ektoras damage");
+		ektorasDamageText = ektorasDamageGO.GetComponent<TextMeshProUGUI>();
 
-		ektorasHp = GameObject.Find("ektoras hp");
-		ektorasHpText = ektorasHp.GetComponent<TextMeshProUGUI>();
+		ektorasHpGO = GameObject.Find("ektoras hp");
+		ektorasHpText = ektorasHpGO.GetComponent<TextMeshProUGUI>();
 
-		achileas = GameObject.Find("achilleas");
-		achileasScript = achileas.GetComponent<achileas>();
+		achileasGO = GameObject.Find("achilleas");
+		achileasScript = achileasGO.GetComponent<achileas>();
 
 		ektorAnimator = GetComponent<Animator>();
 		attackAnim = GetComponent<Animation>();
@@ -69,17 +69,17 @@ public class ektoras : MonoBehaviour
 		achileasScript.takeDamage(Random.Range(10, 26));
 	}
 
-	int healPoints;
+	int defenceHealPoints;
 	public void defence()
 	{
 		ektorAnimator.SetBool("defence", true);
 		gameScript.ePlayedDefenceBefore = true;
 
-		healPoints = Random.Range(5, 11);
-		if (healPoints + hp > 150)
-			healPoints = 150 - hp;
+		defenceHealPoints = Random.Range(5, 11);
+		if (defenceHealPoints + hp > 150)
+			defenceHealPoints = 150 - hp;
 
-		ektorasDamageText.text = "+" + healPoints;
+		ektorasDamageText.text = "+" + defenceHealPoints;
 
 		StartCoroutine(defenceTimer());
 	}
@@ -87,7 +87,7 @@ public class ektoras : MonoBehaviour
 	IEnumerator defenceTimer()
 	{
 		yield return new WaitForSeconds(1);
-		hp += healPoints;
+		hp += defenceHealPoints;
 		ektorasDamageText.text = "";
 		ektorasHpText.text = "" + hp;
 		gameScript.changePlayerTurn();
@@ -95,6 +95,7 @@ public class ektoras : MonoBehaviour
 
 	public void heal()
 	{
+
 		gameScript.changePlayerTurn();
 	}
 

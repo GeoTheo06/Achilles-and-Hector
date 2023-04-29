@@ -11,25 +11,31 @@ public class achileas : MonoBehaviour
 	public Animator achilAnimator;
 	public Animation attackAnim;
 
-	GameObject achilleasDamage;
+	GameObject achilleasDamageGO;
 	TextMeshProUGUI achilleasDamageText;
 
-	GameObject achilleasHp;
+	GameObject achilleasHpGO;
 	TextMeshProUGUI achilleasHpText;
 
-	GameObject game;
+	GameObject healsRemainingGO;
+	TextMeshProUGUI healsRemainingText;
+
+	GameObject gameGO;
 	game gameScript;
 
 	void Start()
 	{
-		game = GameObject.Find("game");
-		gameScript = game.GetComponent<game>();
+		gameGO = GameObject.Find("game");
+		gameScript = gameGO.GetComponent<game>();
 
-		achilleasDamage = GameObject.Find("axilleas damage");
-		achilleasDamageText = achilleasDamage.GetComponent<TextMeshProUGUI>();
+		achilleasDamageGO = GameObject.Find("axilleas damage");
+		achilleasDamageText = achilleasDamageGO.GetComponent<TextMeshProUGUI>();
 
-		achilleasHp = GameObject.Find("axilleas hp");
-		achilleasHpText = achilleasHp.GetComponent<TextMeshProUGUI>();
+		achilleasHpGO = GameObject.Find("axilleas hp");
+		achilleasHpText = achilleasHpGO.GetComponent<TextMeshProUGUI>();
+
+		healsRemainingGO = GameObject.Find("axilleas hp");
+		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
 
 		ektoras = GameObject.Find("ektoras");
 		ektorasScript = ektoras.GetComponent<ektoras>();
@@ -62,17 +68,17 @@ public class achileas : MonoBehaviour
 		ektorasScript.takeDamage(Random.Range(10, 26));
 	}
 
-	int healPoints;
+	int defenceHealPoints;
 	public void defence()
 	{
 		achilAnimator.SetBool("defence", true);
 		gameScript.aPlayedDefenceBefore = true;
 
-		healPoints = Random.Range(5, 11);
-		if (healPoints + hp > 150)
-			healPoints = 150 - hp;
+		defenceHealPoints = Random.Range(5, 11);
+		if (defenceHealPoints + hp > 150)
+			defenceHealPoints = 150 - hp;
 
-		achilleasDamageText.text = "+" + healPoints;
+		achilleasDamageText.text = "+" + defenceHealPoints;
 
 		StartCoroutine(defenceTimer());
 	}
@@ -80,7 +86,7 @@ public class achileas : MonoBehaviour
 	IEnumerator defenceTimer()
 	{
 		yield return new WaitForSeconds(1);
-		hp += healPoints;
+		hp += defenceHealPoints;
 		achilleasDamageText.text = "";
 		achilleasHpText.text = "" + hp;
 		gameScript.changePlayerTurn();
