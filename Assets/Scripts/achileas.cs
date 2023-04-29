@@ -132,7 +132,14 @@ public class achileas : MonoBehaviour
 		}
 		else
 		{
+			if (hp - damage <= 0)
+			{
+				damage = hp;
+				gameScript.gameOver = true;
+			}
+
 			hp -= damage;
+
 			achilleasDamageText.text = "-" + damage;
 			StartCoroutine(removeText1());
 		}
@@ -150,7 +157,11 @@ public class achileas : MonoBehaviour
 		achilleasDamageText.text = "";
 		achilleasHpText.text = "" + hp;
 		ektorasScript.ektorAnimator.SetBool("attack", false);
-		gameScript.changePlayerTurn();
+		if (gameScript.gameOver)
+
+			StartCoroutine(gameOver());
+		else
+			gameScript.changePlayerTurn();
 	}
 
 	IEnumerator takeDamageTimer()
@@ -163,6 +174,16 @@ public class achileas : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1);
 		achilAnimator.SetBool("defence", false);
-		gameScript.changePlayerTurn();
+		if (gameScript.gameOver)
+
+			StartCoroutine(gameOver());
+		else
+			gameScript.changePlayerTurn();
+	}
+
+	IEnumerator gameOver()
+	{
+		yield return new WaitForSeconds(2);
+
 	}
 }

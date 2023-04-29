@@ -10,7 +10,7 @@ public class game : MonoBehaviour
 	GameObject playerTurnGameObject;
 	TextMeshProUGUI playerTurnText;
 	int number = 0;
-	public bool playerTurn;
+	public bool playerTurn, gameOver = false;
 	Button aAttackButton, aDefenceButton, aHealButton, eAttackButton, eDefenceButton, eHealButton;
 
 	GameObject aHealPSob;
