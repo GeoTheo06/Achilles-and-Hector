@@ -779,11 +779,13 @@ MonoBehaviour:
     \u03B5\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7 \u03C0\u03C1\u03BF\u03BA\u03B1\u03BB\u03B5\u03AF
     \u03B1\u03C0\u03BF 10 \u03AD\u03C9\u03C2 30. \u0397 \u03B1\u03BC\u03C5\u03BD\u03B1
     (\u03B1\u03C3\u03C0\u03AF\u03B4\u03B1) \u03C0\u03C1\u03BF\u03C3\u03B8\u03AD\u03C4\u03B5\u03B9
-    \u03B1\u03C0\u03BF 5 \u03AD\u03C9\u03C2 10. \u0397 \u03B1\u03CD\u03BE\u03B7\u03C3\u03B7
+    \u03B1\u03C0\u03BF 5 \u03AD\u03C9\u03C2 10 \u03B1\u03BB\u03BB\u03B1 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF
+    \u03BD\u03B1 \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03B7\u03B8\u03B5\u03AF
+    \u03B1\u03BD\u03B1 1 g\u03CD\u03C1\u03BF. \u0397 \u03B1\u03CD\u03BE\u03B7\u03C3\u03B7
     \u03B6\u03C9\u03AE\u03C2 \u03C0\u03C1\u03BF\u03C3\u03B8\u03AD\u03C4\u03B5\u03B9
     \u03B1\u03C0\u03BF 10 \u03AD\u03C9\u03C2 30 \u03B1\u03BB\u03BB\u03B1 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF
     \u03BD\u03B1 \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03B7\u03B8\u03B5\u03AF
-    \u03AD\u03C9\u03C2 3 f\u03BF\u03C1\u03AD\u03C2. \u0397 \u03B6\u03C9\u03AE \u03C3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03B1
+    \u03AD\u03C9\u03C2 2 f\u03BF\u03C1\u03AD\u03C2. \u0397 \u03B6\u03C9\u03AE \u03C3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03B1
     \u03B4\u03B5\u03BD \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF \u03BD\u03B1 \u03B1\u03BD\u03ADb\u03B5\u03B9
     \u03C0\u03B1\u03BD\u03C9 \u03B1\u03C0\u03BF 100."
   m_isRightToLeft: 0
@@ -812,14 +814,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.05
+  m_fontSize: 37.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 1000
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -848,7 +850,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 26.844223, y: 56.560577, z: -310.6802, w: -247.66502}
+  m_margin: {x: -80.43944, y: 23.034435, z: -413.49362, w: -274.48593}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
