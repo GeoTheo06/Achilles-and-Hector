@@ -27,14 +27,6 @@ public class game : MonoBehaviour
 		number = Random.Range(0, 2);
 		playerTurn = number == 1;
 
-		if (playerTurn)
-		{
-			playerTurnText.text = "Παίζει ο Αχιλλέας";
-		}
-		else if (!playerTurn)
-		{
-			playerTurnText.text = "Παίζει ο Έκτορας";
-		}
 		changePlayerTurn();
 	}
 
@@ -51,6 +43,11 @@ public class game : MonoBehaviour
 	public bool aPlayedDefenceBefore = false, ePlayedDefenceBefore = false;
 	public void changePlayerTurn()
 	{
+		if (playerTurn)
+			playerTurnText.text = "Παίζει ο Αχιλλέας";
+		else if (!playerTurn)
+			playerTurnText.text = "Παίζει ο Έκτορας";
+
 		if (playerTurn)
 		{
 			eAttackButton.interactable = false;
@@ -88,10 +85,5 @@ public class game : MonoBehaviour
 		}
 
 		playerTurn = !playerTurn;
-	}
-
-	void Update()
-	{
-
 	}
 }
