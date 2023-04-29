@@ -110,6 +110,22 @@ public class ektoras : MonoBehaviour
 		}
 	}
 
+	IEnumerator removeText1()
+	{
+		yield return new WaitForSeconds(1);
+		if (!achileasScript.attackAnim.isPlaying && achileasScript.achilAnimator.GetBool("attack"))
+			achileasScript.achilAnimator.SetBool("attack", false);
+		StartCoroutine(removeText2());
+	}
+	IEnumerator removeText2()
+	{
+		yield return new WaitForSeconds(1);
+		ektorasDamageText.text = "";
+		ektorasHpText.text = "" + hp;
+		achileasScript.achilAnimator.SetBool("attack", false);
+		gameScript.changePlayerTurn();
+	}
+
 	IEnumerator takeDamageTimer()
 	{
 		yield return new WaitForSeconds(1);
@@ -120,23 +136,6 @@ public class ektoras : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1);
 		ektorAnimator.SetBool("defence", false);
-		gameScript.changePlayerTurn();
-	}
-
-	IEnumerator removeText1()
-	{
-		yield return new WaitForSeconds(1);
-		if (!achileasScript.attackAnim.isPlaying && achileasScript.achilAnimator.GetBool("attack"))
-			achileasScript.achilAnimator.SetBool("attack", false);
-		StartCoroutine(removeText2());
-	}
-
-	IEnumerator removeText2()
-	{
-		yield return new WaitForSeconds(1);
-		ektorasDamageText.text = "";
-		ektorasHpText.text = "" + hp;
-		achileasScript.achilAnimator.SetBool("attack", false);
 		gameScript.changePlayerTurn();
 	}
 }
