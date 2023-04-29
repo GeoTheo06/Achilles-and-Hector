@@ -119,6 +119,9 @@ public class game : MonoBehaviour
 	float rotationSpeed = 200f;
 	void Update()
 	{
+		if (Input.GetKey("escape"))
+			Application.Quit();
+
 		aHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 		eHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 	}

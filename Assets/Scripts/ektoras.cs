@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class ektoras : MonoBehaviour
 {
@@ -191,6 +192,8 @@ public class ektoras : MonoBehaviour
 	IEnumerator gameOver()
 	{
 		yield return new WaitForSeconds(2);
-
+		string ektorasName = "Έκτορας";
+		PlayerPrefs.SetString("winner", ektorasName);
+		SceneManager.LoadScene("endgame");
 	}
 }

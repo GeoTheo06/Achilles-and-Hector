@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class achileas : MonoBehaviour
 {
@@ -184,6 +185,8 @@ public class achileas : MonoBehaviour
 	IEnumerator gameOver()
 	{
 		yield return new WaitForSeconds(2);
-
+		string axilleasName = "Αχιλλέας";
+		PlayerPrefs.SetString("winner", axilleasName);
+		SceneManager.LoadScene("endgame");
 	}
 }
