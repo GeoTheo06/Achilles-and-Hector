@@ -23,8 +23,16 @@ public class game : MonoBehaviour
 	achileas achileasScript;
 	ektoras ektorasScript;
 
+	GameObject musicOB;
+	AudioSource music;
+
 	void Start()
 	{
+		musicOB = GameObject.Find("oneMusic");
+		music = musicOB.GetComponent<AudioSource>();
+		music.time = PlayerPrefs.GetFloat("musicTime");
+		music.Play();
+
 		achileasOB = GameObject.Find("achilleas");
 		achileasScript = achileasOB.GetComponent<achileas>();
 
@@ -124,6 +132,30 @@ public class game : MonoBehaviour
 
 		aHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 		eHealPSob.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+
+		if (Input.GetKey(KeyCode.Space))
+		{
+			achileasScript.hp = 1;
+		}
+	}
+
+
+	public void fadeMusic()
+	{
+		StartCoroutine(DecreaseVolumeOverTime());
+	}
+	IEnumerator DecreaseVolumeOverTime()
+	{
+		float time = 2f;
+		float initialVolume = music.volume; //store initial volume
+		float elapsedTime = 0f;
+
+		while (elapsedTime < time)
+		{
+			elapsedTime += Time.deltaTime;
+			music.volume = Mathf.Lerp(initialVolume, 0f, elapsedTime / time); //gradually decrease volume
+			yield return null;
+		}
 	}
 
 	public void aHeal(bool start)

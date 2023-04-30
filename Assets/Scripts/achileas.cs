@@ -183,6 +183,7 @@ public class achileas : MonoBehaviour
 
 	IEnumerator gameOver()
 	{
+		gameScript.fadeMusic();
 		yield return new WaitForSeconds(2);
 		string axilleasName = "Έκτορας";
 		PlayerPrefs.SetString("winner", axilleasName);

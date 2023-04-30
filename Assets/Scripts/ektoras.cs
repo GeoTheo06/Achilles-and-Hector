@@ -191,6 +191,7 @@ public class ektoras : MonoBehaviour
 
 	IEnumerator gameOver()
 	{
+		gameScript.fadeMusic();
 		yield return new WaitForSeconds(2);
 		string ektorasName = "Αχιλλέας";
 		PlayerPrefs.SetString("winner", ektorasName);
