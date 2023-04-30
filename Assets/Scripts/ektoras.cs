@@ -69,7 +69,7 @@ public class ektoras : MonoBehaviour
 
 	IEnumerator attackTimer()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.3f);
 
 		ektorAnimator.SetBool("attack", true);
 		gameScript.makeNonInteractable();
