@@ -176,7 +176,6 @@ public class achileas : MonoBehaviour
 		yield return new WaitForSeconds(1);
 		achilAnimator.SetBool("defence", false);
 		if (gameScript.gameOver)
-
 			StartCoroutine(gameOver());
 		else
 			gameScript.changePlayerTurn();
@@ -185,7 +184,7 @@ public class achileas : MonoBehaviour
 	IEnumerator gameOver()
 	{
 		yield return new WaitForSeconds(2);
-		string axilleasName = "Αχιλλέας";
+		string axilleasName = "Έκτορας";
 		PlayerPrefs.SetString("winner", axilleasName);
 		SceneManager.LoadScene("endgame");
 	}

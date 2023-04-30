@@ -14,7 +14,7 @@ public class endgame : MonoBehaviour
 		textOB = GameObject.Find("win");
 		text = textOB.GetComponent<TextMeshProUGUI>();
 
-		text.text = "Νίκησε ο " + PlayerPrefs.GetString("VariableName");
+		text.text = "Nίκησε ο " + PlayerPrefs.GetString("winner");
 	}
 
 	public void exit()

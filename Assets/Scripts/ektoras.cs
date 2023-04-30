@@ -192,7 +192,7 @@ public class ektoras : MonoBehaviour
 	IEnumerator gameOver()
 	{
 		yield return new WaitForSeconds(2);
-		string ektorasName = "Έκτορας";
+		string ektorasName = "Αχιλλέας";
 		PlayerPrefs.SetString("winner", ektorasName);
 		SceneManager.LoadScene("endgame");
 	}
