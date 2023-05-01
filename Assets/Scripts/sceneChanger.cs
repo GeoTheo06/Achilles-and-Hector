@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class sceneChanger : MonoBehaviour
 {
-
-	GameObject musicOB;
 	AudioSource music;
 
 	private void Start()
 	{
-		musicOB = GameObject.Find("oneMusic");
-		music = musicOB.GetComponent<AudioSource>();
+		music = GameObject.Find("oneMusic").GetComponent<AudioSource>();
 
 		music.Play();
 		music.volume = 65;

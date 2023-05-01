@@ -12,39 +12,28 @@ public class game : MonoBehaviour
 	int number = 0;
 	public bool playerTurn, gameOver = false;
 	Button aAttackButton, aDefenceButton, aHealButton, eAttackButton, eDefenceButton, eHealButton;
-
-	GameObject aHealPSob;
-	ParticleSystem aHealPS;
-
-	GameObject eHealPSob;
-	ParticleSystem eHealPS;
-
-	GameObject achileasOB, ektorasOB;
 	achileas achileasScript;
 	ektoras ektorasScript;
-
-	GameObject musicOB;
 	AudioSource music;
+
+	GameObject aHealPSob, eHealPSob;
+	ParticleSystem aHealPS, eHealPS;
 
 	void Start()
 	{
-		musicOB = GameObject.Find("oneMusic");
-		music = musicOB.GetComponent<AudioSource>();
+		music = GameObject.Find("oneMusic").GetComponent<AudioSource>();
 		music.time = PlayerPrefs.GetFloat("musicTime");
 		music.Play();
 		music.volume = 65;
 
-		achileasOB = GameObject.Find("achilleas");
-		achileasScript = achileasOB.GetComponent<achileas>();
-
-		ektorasOB = GameObject.Find("ektoras");
-		ektorasScript = ektorasOB.GetComponent<ektoras>();
+		achileasScript = GameObject.Find("achilleas").GetComponent<achileas>();
+		ektorasScript = GameObject.Find("ektoras").GetComponent<ektoras>();
 
 		aHealPSob = GameObject.Find("aHealPS");
 		aHealPS = aHealPSob.GetComponent<ParticleSystem>();
 
 		eHealPSob = GameObject.Find("eHealPS");
-		eHealPS = eHealPSob.GetComponent<ParticleSystem>();
+		eHealPS = GameObject.Find("eHealPS").GetComponent<ParticleSystem>();
 
 		aAttackButton = GameObject.Find("AAttack").GetComponent<Button>();
 		aDefenceButton = GameObject.Find("ADefence").GetComponent<Button>();

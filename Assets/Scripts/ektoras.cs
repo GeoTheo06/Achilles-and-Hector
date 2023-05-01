@@ -9,39 +9,19 @@ public class ektoras : MonoBehaviour
 
 	GameObject game;
 	game gameScript;
-
-	GameObject achileasGO;
 	achileas achileasScript;
-
-	GameObject ektorasHpGO;
-	TextMeshProUGUI ektorasHpText;
-
-	GameObject ektorasDamageGO;
-	TextMeshProUGUI ektorasDamageText;
-
-	GameObject healsRemainingGO;
-	TextMeshProUGUI healsRemainingText;
-
+	TextMeshProUGUI ektorasHpText, ektorasDamageText, healsRemainingText;
 	public Animator ektorAnimator;
 	public Animation attackAnim;
 
 	void Start()
 	{
-		achileasGO = GameObject.Find("achilleas");
-		achileasScript = achileasGO.GetComponent<achileas>();
-
+		achileasScript = GameObject.Find("achilleas").GetComponent<achileas>();
 		game = GameObject.Find("game");
 		gameScript = game.GetComponent<game>();
-
-		ektorasDamageGO = GameObject.Find("ektoras damage");
-		ektorasDamageText = ektorasDamageGO.GetComponent<TextMeshProUGUI>();
-
-		ektorasHpGO = GameObject.Find("ektoras hp");
-		ektorasHpText = ektorasHpGO.GetComponent<TextMeshProUGUI>();
-
-		healsRemainingGO = GameObject.Find("eHealsRemaining");
-		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
-
+		ektorasDamageText = GameObject.Find("ektoras damage").GetComponent<TextMeshProUGUI>();
+		ektorasHpText = GameObject.Find("ektoras hp").GetComponent<TextMeshProUGUI>();
+		healsRemainingText = GameObject.Find("eHealsRemaining").GetComponent<TextMeshProUGUI>();
 		ektorAnimator = GetComponent<Animator>();
 		attackAnim = GetComponent<Animation>();
 	}

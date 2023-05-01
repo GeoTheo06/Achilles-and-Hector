@@ -5,14 +5,12 @@ using TMPro;
 
 public class endgame : MonoBehaviour
 {
-	GameObject textOB;
 	TextMeshProUGUI text;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		textOB = GameObject.Find("win");
-		text = textOB.GetComponent<TextMeshProUGUI>();
+		text = GameObject.Find("win").GetComponent<TextMeshProUGUI>();
 
 		text.text = "Nίκησε ο " + PlayerPrefs.GetString("winner");
 	}
