@@ -15,6 +15,7 @@ public class sceneChanger : MonoBehaviour
 		music = musicOB.GetComponent<AudioSource>();
 
 		music.Play();
+		music.volume = 65;
 	}
 	public void ChangeScene()
 	{

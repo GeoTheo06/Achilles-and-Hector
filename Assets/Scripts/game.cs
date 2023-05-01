@@ -32,6 +32,7 @@ public class game : MonoBehaviour
 		music = musicOB.GetComponent<AudioSource>();
 		music.time = PlayerPrefs.GetFloat("musicTime");
 		music.Play();
+		music.volume = 65;
 
 		achileasOB = GameObject.Find("achilleas");
 		achileasScript = achileasOB.GetComponent<achileas>();

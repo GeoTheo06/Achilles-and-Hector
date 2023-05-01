@@ -13,11 +13,11 @@ public class ektoras : MonoBehaviour
 	GameObject achileasGO;
 	achileas achileasScript;
 
-	GameObject ektorasDamageGO;
-	TextMeshProUGUI ektorasDamageText;
-
 	GameObject ektorasHpGO;
 	TextMeshProUGUI ektorasHpText;
+
+	GameObject ektorasDamageGO;
+	TextMeshProUGUI ektorasDamageText;
 
 	GameObject healsRemainingGO;
 	TextMeshProUGUI healsRemainingText;
@@ -27,6 +27,9 @@ public class ektoras : MonoBehaviour
 
 	void Start()
 	{
+		achileasGO = GameObject.Find("achilleas");
+		achileasScript = achileasGO.GetComponent<achileas>();
+
 		game = GameObject.Find("game");
 		gameScript = game.GetComponent<game>();
 
@@ -36,9 +39,6 @@ public class ektoras : MonoBehaviour
 		ektorasHpGO = GameObject.Find("ektoras hp");
 		ektorasHpText = ektorasHpGO.GetComponent<TextMeshProUGUI>();
 
-		achileasGO = GameObject.Find("achilleas");
-		achileasScript = achileasGO.GetComponent<achileas>();
-
 		healsRemainingGO = GameObject.Find("eHealsRemaining");
 		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
 
@@ -46,12 +46,6 @@ public class ektoras : MonoBehaviour
 		attackAnim = GetComponent<Animation>();
 	}
 
-	void Update()
-	{
-
-	}
-
-	int damage;
 	public void attack()
 	{
 		if (ektorAnimator.GetBool("defence"))

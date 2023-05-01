@@ -6,7 +6,8 @@ using TMPro;
 public class achileas : MonoBehaviour
 {
 	public int hp = 100;
-	GameObject ektoras;
+
+	GameObject ektorasGO;
 	ektoras ektorasScript;
 
 	public Animator achilAnimator;
@@ -38,8 +39,8 @@ public class achileas : MonoBehaviour
 		healsRemainingGO = GameObject.Find("aHealsRemaining");
 		healsRemainingText = healsRemainingGO.GetComponent<TextMeshProUGUI>();
 
-		ektoras = GameObject.Find("ektoras");
-		ektorasScript = ektoras.GetComponent<ektoras>();
+		ektorasGO = GameObject.Find("ektoras");
+		ektorasScript = ektorasGO.GetComponent<ektoras>();
 
 		achilAnimator = GetComponent<Animator>();
 		attackAnim = GetComponent<Animation>();
@@ -128,9 +129,7 @@ public class achileas : MonoBehaviour
 	public void takeDamage(int damage)
 	{
 		if (achilAnimator.GetBool("defence"))
-		{
 			StartCoroutine(takeDamageTimer());
-		}
 		else
 		{
 			if (hp - damage <= 0)
