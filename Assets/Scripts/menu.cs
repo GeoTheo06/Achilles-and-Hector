@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class sceneChanger : MonoBehaviour
+public class menu : MonoBehaviour
 {
 	AudioSource music;
+	GameObject info;
 
 	private void Start()
 	{
+		info = GameObject.Find("information");
+		info.SetActive(false);
+
 		music = GameObject.Find("oneMusic").GetComponent<AudioSource>();
 
 		music.Play();
@@ -18,6 +22,16 @@ public class sceneChanger : MonoBehaviour
 	{
 		PlayerPrefs.SetFloat("musicTime", music.time);
 		SceneManager.LoadScene("main");
+	}
+
+	bool toggle = true;
+	public void setInfo()
+	{
+		if (toggle)
+			info.SetActive(true);
+		else
+			info.SetActive(false);
+		toggle = !toggle;
 	}
 
 	public void quit()
