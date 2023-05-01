@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
+using UnityEngine.UI;
 public class menu : MonoBehaviour
 {
 	AudioSource music;
-	GameObject info;
+	TextMeshProUGUI info;
 
 	private void Start()
 	{
-		info = GameObject.Find("information");
-		info.SetActive(false);
+		info = GameObject.Find("information").GetComponent<TextMeshProUGUI>();
+		info.enabled = false;
 
 		music = GameObject.Find("oneMusic").GetComponent<AudioSource>();
 
@@ -28,9 +29,9 @@ public class menu : MonoBehaviour
 	public void setInfo()
 	{
 		if (toggle)
-			info.SetActive(true);
+			info.enabled = true;
 		else
-			info.SetActive(false);
+			info.enabled = false;
 		toggle = !toggle;
 	}
 
