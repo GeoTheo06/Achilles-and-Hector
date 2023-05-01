@@ -14,7 +14,7 @@ public class game : MonoBehaviour
 	Button aAttackButton, aDefenceButton, aHealButton, eAttackButton, eDefenceButton, eHealButton;
 	achileas achileasScript;
 	ektoras ektorasScript;
-	AudioSource music;
+	AudioSource music, swordClash, swordHit, healSound;
 
 	GameObject aHealPSob, eHealPSob;
 	ParticleSystem aHealPS, eHealPS;
@@ -25,6 +25,10 @@ public class game : MonoBehaviour
 		music.time = PlayerPrefs.GetFloat("musicTime");
 		music.Play();
 		music.volume = 65;
+
+		swordClash = GameObject.Find("swordClash").GetComponent<AudioSource>();
+		swordHit = GameObject.Find("swordHit").GetComponent<AudioSource>();
+		healSound = GameObject.Find("healSound").GetComponent<AudioSource>();
 
 		achileasScript = GameObject.Find("achilleas").GetComponent<achileas>();
 		ektorasScript = GameObject.Find("ektoras").GetComponent<ektoras>();
@@ -50,6 +54,21 @@ public class game : MonoBehaviour
 		aHealPS.Stop();
 		eHealPS.Stop();
 		changePlayerTurn();
+	}
+
+	public void playSwordClashSound()
+	{
+		swordClash.Play();
+	}
+
+	public void playSwordHitSound()
+	{
+		swordHit.Play();
+	}
+
+	public void playHealSound()
+	{
+		healSound.Play();
 	}
 
 	public void makeNonInteractable()

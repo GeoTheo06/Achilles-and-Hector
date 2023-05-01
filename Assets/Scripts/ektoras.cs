@@ -56,6 +56,8 @@ public class ektoras : MonoBehaviour
 		ektorAnimator.SetBool("defence", true);
 		gameScript.ePlayedDefenceBefore = true;
 
+		gameScript.playSwordHitSound();
+
 		defenceHealPoints = Random.Range(5, 11);
 		if (defenceHealPoints + hp > 100)
 			defenceHealPoints = 100 - hp;
@@ -88,6 +90,7 @@ public class ektoras : MonoBehaviour
 		ektorasDamageText.text = "+" + healPoints;
 
 		gameScript.eHeal(true);
+		gameScript.playHealSound();
 
 		oldHp = hp;
 		InvokeRepeating("incrementHp", 0.0f, 0.1f);
@@ -109,36 +112,36 @@ public class ektoras : MonoBehaviour
 
 	public void takeDamage(int damage)
 	{
-		if (ektorAnimator.GetBool("defence"))
-			StartCoroutine(takeDamageTimer());
-		else
+		if (hp - damage <= 0)
 		{
-			if (hp - damage <= 0)
-			{
-				damage = hp;
-				gameScript.gameOver = true;
-			}
-
-			hp -= damage;
-
-			ektorasDamageText.text = "-" + damage;
-			StartCoroutine(removeText1());
+			damage = hp;
+			gameScript.gameOver = true;
 		}
+
+		hp -= damage;
+
+		ektorasDamageText.text = "-" + damage;
+		StartCoroutine(takeDamageTimer());
 	}
 
-	IEnumerator removeText1()
+	IEnumerator takeDamageTimer()
 	{
 		yield return new WaitForSeconds(1);
-		if (!achileasScript.attackAnim.isPlaying && achileasScript.achilAnimator.GetBool("attack"))
-			achileasScript.achilAnimator.SetBool("attack", false);
-		StartCoroutine(removeText2());
+		achileasScript.achilAnimator.SetBool("attack", false);
+
+		if (ektorAnimator.GetBool("defence"))
+			StartCoroutine(takeDamageWithShield());
+		else
+			StartCoroutine(takeDamageWithoutShield());
 	}
-	IEnumerator removeText2()
+	IEnumerator takeDamageWithoutShield()
 	{
 		yield return new WaitForSeconds(1);
+
 		ektorasDamageText.text = "";
 		ektorasHpText.text = "" + hp;
-		achileasScript.achilAnimator.SetBool("attack", false);
+		gameScript.playSwordHitSound();
+
 		if (gameScript.gameOver)
 
 			StartCoroutine(gameOver());
@@ -146,16 +149,13 @@ public class ektoras : MonoBehaviour
 			gameScript.changePlayerTurn();
 	}
 
-	IEnumerator takeDamageTimer()
+	IEnumerator takeDamageWithShield()
 	{
 		yield return new WaitForSeconds(1);
-		achileasScript.achilAnimator.SetBool("attack", false);
-		StartCoroutine(takeDamageTimer2());
-	}
-	IEnumerator takeDamageTimer2()
-	{
-		yield return new WaitForSeconds(1);
+
 		ektorAnimator.SetBool("defence", false);
+		gameScript.playSwordClashSound();
+
 		if (gameScript.gameOver)
 
 			StartCoroutine(gameOver());
