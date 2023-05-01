@@ -87,7 +87,7 @@ public class game : MonoBehaviour
 		if (playerTurn)
 			playerTurnText.text = "Παίζει ο Αχιλλέας";
 		else if (!playerTurn)
-			playerTurnText.text = "Παίζει ο Έκτορας";
+			playerTurnText.text = "Παίζει ο Εκτορας";
 
 		if (playerTurn)
 		{
