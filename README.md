@@ -3,12 +3,12 @@
 ![Screenshot 2023-05-04 130250](https://user-images.githubusercontent.com/78025790/236173859-32192bc6-6a46-48df-901e-3a7ecde328b3.png)
 
 ## Table Of Contents
-[Description](#description)
-[Features](#features)
-[Setup and Installation](#setup-and-installation)
-[Gameplay](#gameplay)
-[Technologies Used](#technologies-used)
-[Contributing](#contributing)
+* [Description](#description)
+* [Features](#features)
+* [Setup and Installation](#setup-and-installation)
+* [Gameplay](#gameplay)
+* [Technologies Used](#technologies-used)
+* [Contributing](#contributing)
 
 ## Description
 Achilles vs Hector is an epic battle game inspired by the legendary characters from the Iliad. In this game, two players can engage in a fierce battle, controlling either Achilles or Hector, until only one of them remains standing. The game was developed using Unity in just 7 days to fulfill a school assignment related to the Iliad.
