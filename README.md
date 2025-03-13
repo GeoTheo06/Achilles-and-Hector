@@ -42,12 +42,6 @@ Achilles vs Hector is an epic battle game inspired by the legendary characters f
 7. The game continues until one player's HP reaches zero.
 8. The victorious player is declared, and the game offers options to restart or exit.
 
-## Technologies Used
-#### The following technologies were used in the development of Achilles vs Hector:
-
-* Unity: The game was created using the Unity game development engine, which provides a framework for building interactive experiences.
-* C#: The game logic and scripting were implemented using the C# programming language, supported by Unity.
-* Visual Studio: The Visual Studio integrated development environment (IDE) version 2019 was used for coding and debugging purposes during the development process.
 
 ## Contributing
 Thank you for considering contributing to Achilles vs Hector! If you have any suggestions, bug reports, or feature requests, please open an issue in the GitHub repository. Contributions from the community are always appreciated.
